@@ -1,0 +1,4 @@
+*.o
+*.lo
+*.conf.tmp
+*.la
