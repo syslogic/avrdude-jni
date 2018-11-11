@@ -1,0 +1,48 @@
+// :avrdude-jni build.gradle
+apply plugin: "com.android.library"
+
+android {
+
+    defaultConfig {
+        versionName rootProject.ext.get('versionName')
+        versionCode rootProject.ext.get('versionCode')
+        compileSdkVersion rootProject.ext.get('compileSdkVersion')
+        targetSdkVersion rootProject.ext.get('targetSdkVersion')
+        minSdkVersion rootProject.ext.get('minSdkVersion')
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testBuildType "debug"
+        ndk {}
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = ["src/main/cpp"]
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path "src/main/cpp/Android.mk"
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled false
+            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            zipAlignEnabled true
+            renderscriptDebuggable true
+            pseudoLocalesEnabled false
+        }
+        release {
+            testCoverageEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            pseudoLocalesEnabled false
+            renderscriptDebuggable false
+            jniDebuggable false
+            debuggable false
+        }
+    }
+}
