@@ -11,8 +11,12 @@ android {
         minSdkVersion rootProject.ext.get('minSdkVersion')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testBuildType "debug"
-        ndk {}
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a' // 'x86', 'x86_64'
+
+        }
     }
+
     sourceSets {
         main {
             jni.srcDirs = ["src/main/cpp"]

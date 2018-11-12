@@ -1,7 +1,6 @@
 
 def version = new Properties()
 version.load(new FileInputStream(rootProject.file('version.properties')))
-project.ext.set('applicationId',     version['applicationId'])
 project.ext.set('versionName',       version['versionName'])
 project.ext.set('versionCode',       new Integer(version['versionCode']))
 project.ext.set('compileSdkVersion', new Integer(version['compileSdkVersion']))
@@ -22,12 +21,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-    }
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xmaxerrs" << "2000" << "-Xmaxwarns" << "2000"
-            options.compilerArgs << "-Xlint:unchecked" << '-Xlint:deprecation'
-        }
     }
 }
 
